@@ -45,7 +45,7 @@ nav{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 12
 .section-label{display:inline-block;background:var(--light);color:var(--blue);font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:16px}
 .section-title{font-family:'Sora',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:var(--navy);line-height:1.2;margin-bottom:16px}
 .section-sub{font-size:1rem;color:var(--grey);max-width:560px;line-height:1.7;margin-bottom:40px}
-.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .pain-card{background:#fef9f0;border:1px solid #fde68a;border-radius:var(--radius);padding:24px;display:flex;gap:16px;align-items:flex-start}
 .pain-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px}
 .pain-card h3{font-size:0.95rem;font-weight:700;color:var(--navy);margin-bottom:4px}
@@ -107,9 +107,19 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
 .footer-bottom{max-width:1100px;margin:24px auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:0.8rem}
 .footer-bottom a{color:rgba(255,255,255,0.45);text-decoration:none}
 .footer-bottom a:hover{color:var(--white)}
-.whatsapp-float{position:fixed;bottom:24px;left:24px;background:#25D366;color:white;padding:10px 18px;border-radius:50px;font-size:0.875rem;font-weight:600;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,0.4);z-index:90;display:flex;align-items:center;gap:8px;transition:transform 0.2s}
+.whatsapp-float{position:fixed;bottom:24px;left:24px;background:#25D366;color:white;padding:10px 18px;border-radius:50px;font-size:0.875rem;font-weight:600;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,0.4);z-index:90;display:flex;align-items:center;gap:8px;transition:transform 0.2s,bottom 0.35s cubic-bezier(0.4,0,0.2,1)}
 .whatsapp-float:hover{transform:translateY(-2px)}
 .chat-launcher{position:fixed;bottom:24px;right:24px;z-index:200}
+/* Trust badges */
+.trust-bar{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 24px}
+.trust-bar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:10px;color:#374151;font-size:0.82rem;font-weight:600}
+.trust-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.trust-icon.green{background:#dcfce7}
+.trust-icon.blue{background:#dbeafe}
+.trust-icon.amber{background:#fef3c7}
+.trust-divider{width:1px;height:32px;background:var(--border);flex-shrink:0}
+@media(max-width:768px){.trust-divider{display:none}.trust-bar-inner{gap:20px}.trust-item{font-size:0.78rem}}
 .chat-bubble-btn{width:60px;height:60px;background:var(--navy);border-radius:50%;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;font-size:1.5rem;transition:transform 0.2s}
 .chat-bubble-btn:hover{transform:scale(1.08)}
 .chat-window{position:fixed;bottom:96px;right:24px;width:360px;height:540px;background:var(--white);border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,0.2);display:none;flex-direction:column;overflow:hidden;z-index:200}
@@ -158,6 +168,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
   .footer-inner{grid-template-columns:1fr;gap:28px}
   .chat-window{width:calc(100vw - 32px);right:16px;bottom:88px}
   .hero,.pain,.features,.pricing,.testimonials,.try-amy,.cta-banner{padding-left:20px;padding-right:20px}
+  .pain-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -190,6 +201,23 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
   </div>
 </section>
 
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><div class="trust-icon green">🔒</div><span>GDPR Compliant</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon blue">🇬🇧</div><span>UK Based Business</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon green">🛡️</div><span>SSL Secure</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon amber">💳</div><span>Secure Payments via Stripe</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon blue">⭐</div><span>No Long-Term Contracts</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon green">📞</div><span>Cancel Any Time</span></div>
+  </div>
+</div>
+
 <section class="pain">
   <div class="pain-inner">
     <span class="section-label">Sound Familiar?</span>
@@ -200,7 +228,8 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
       <div class="pain-card"><div class="pain-icon">📋</div><div><h3>Quotes disappear into silence</h3><p>You send quotes and never hear back. You mean to follow up but never get around to it.</p></div></div>
       <div class="pain-card"><div class="pain-icon">⭐</div><div><h3>Happy customers don't leave reviews</h3><p>They mean to — but nobody asks them at the right moment, so it never happens.</p></div></div>
       <div class="pain-card"><div class="pain-icon">💸</div><div><h3>Invoices go unpaid for weeks</h3><p>Chasing payment feels awkward, so you put it off and your cash flow suffers.</p></div></div>
-      <div class="pain-card"><div class="pain-icon">📊</div><div><h3>No idea what's in your pipeline</h3><p>You have no real system — just a loose sense of what's on and what's not.</p></div></div>
+      <div class="pain-card"><div class="pain-icon">🗂️</div><div><h3>Tax time is a complete nightmare</h3><p>Receipts stuffed in your van, on your phone, or lost altogether — and you end up paying more tax than you should.</p></div></div>
+      <div class="pain-card"><div class="pain-icon">😤</div><div><h3>No idea where your business stands</h3><p>You don't know how many jobs are waiting, how many quotes you've sent, or who still owes you money — until it's too late.</p></div></div>
     </div>
   </div>
 </section>
@@ -219,12 +248,12 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
     <h2 class="section-title">Your complete AI ops system</h2>
     <p class="section-sub" style="margin-bottom:0">Everything is set up for you. You don't touch a single piece of technology.</p>
     <div class="features-grid">
-      <div class="feature-card"><div class="feature-icon">🤖</div><h3>24/7 AI Receptionist</h3><p>Amy answers every website enquiry instantly — even on bank holidays and Christmas Day.</p></div>
-      <div class="feature-card"><div class="feature-icon">📲</div><h3>Missed Call Notifications</h3><p>Instant WhatsApp or email with the customer's name, number, address and job details the moment a lead comes in.</p></div>
-      <div class="feature-card"><div class="feature-icon">📩</div><h3>Automated Quote Follow-Up</h3><p>Amy chases your prospects on a set schedule so you don't have to feel awkward about it.</p></div>
-      <div class="feature-card"><div class="feature-icon">⭐</div><h3>Review Request Agent</h3><p>Sends a personalised thank-you and review link after every completed job — at exactly the right moment.</p></div>
-      <div class="feature-card"><div class="feature-icon">💷</div><h3>Invoice Chaser</h3><p>Politely follows up on late payments at day 3, 7, and 14 — so you get paid without the awkward conversation.</p></div>
-      <div class="feature-card"><div class="feature-icon">📊</div><h3>Weekly Pipeline Report</h3><p>Every Monday morning, your jobs, quotes and reviews summary delivered directly to your WhatsApp.</p></div>
+      <div class="feature-card"><div class="feature-icon">🤖</div><h3>24/7 AI Receptionist</h3><p>Amy answers every website enquiry instantly — even on bank holidays and Christmas Day — and gets the details straight to your phone.</p></div>
+      <div class="feature-card"><div class="feature-icon">📲</div><h3>Instant Lead Notifications</h3><p>The moment a customer gets in touch, you get a WhatsApp with their name, number, address and exactly what they need — before your competitor even knows they called.</p></div>
+      <div class="feature-card"><div class="feature-icon">📩</div><h3>Quote &amp; Invoice Chaser</h3><p>Amy follows up on quotes that go quiet and chases overdue invoices at day 3, 7 and 14 — automatically, so you get paid without the awkward conversation.</p></div>
+      <div class="feature-card"><div class="feature-icon">⭐</div><h3>Review Request Agent</h3><p>Sends a personalised thank-you and Google review link after every completed job — at exactly the right moment, while the customer is still happy.</p></div>
+      <div class="feature-card"><div class="feature-icon">🧾</div><h3>Your Personal Accountant</h3><p>Snap a photo of any receipt and send it to Amy. She reads it, logs the amount and supplier to a spreadsheet, and files the image in a tidy folder — so your accountant has everything they need at tax time and you claim back every penny you're owed.</p></div>
+      <div class="feature-card"><div class="feature-icon">📊</div><h3>Weekly Business Summary</h3><p>Every Monday morning: how many new enquiries came in, which quotes are still open, who owes you money, and how many reviews you've picked up — delivered straight to your WhatsApp.</p></div>
     </div>
   </div>
 </section>
@@ -258,7 +287,8 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
           <li>Automated quote follow-up</li>
           <li>Invoice chaser (day 3, 7, 14)</li>
           <li>Review request agent</li>
-          <li>Weekly WhatsApp pipeline report</li>
+          <li>Weekly WhatsApp business summary</li>
+          <li>Receipt organiser for tax returns</li>
         </ul>
         <a href="https://calendly.com/ct-paypaluk/30min" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;text-align:center">Get Started</a>
       </div>
@@ -407,6 +437,17 @@ document.getElementById('hamburger').addEventListener('click', function(){
   document.getElementById('navLinks').classList.toggle('open');
 });
 
+// ── WhatsApp float rises above chat window when open ──
+const waBtn = document.querySelector('.whatsapp-float');
+function updateWaPosition(chatOpen) {
+  if (chatOpen) {
+    // chat window is 540px tall + 96px bottom offset + 12px gap
+    waBtn.style.bottom = '660px';
+  } else {
+    waBtn.style.bottom = '24px';
+  }
+}
+
 // ── Chat Widget ──
 const WORKER_URL = 'https://amy-chat-api.ct-paypaluk.workers.dev';
 const chatWindow  = document.getElementById('chatWindow');
@@ -436,9 +477,13 @@ function isWrapUp(text) {
 function openChat() {
   chatWindow.classList.add('open');
   chatInput.focus();
+  updateWaPosition(true);
   if (!greeted) { greeted = true; greet(); }
 }
-function closeChat() { chatWindow.classList.remove('open'); }
+function closeChat() {
+  chatWindow.classList.remove('open');
+  updateWaPosition(false);
+}
 
 document.getElementById('chatBubble').addEventListener('click', openChat);
 document.getElementById('chatClose').addEventListener('click', closeChat);
