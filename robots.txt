@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block any private or system paths if added in future
+Disallow: /admin/
+Disallow: /api/
+
+Sitemap: https://tradesflowai.co.uk/sitemap.xml

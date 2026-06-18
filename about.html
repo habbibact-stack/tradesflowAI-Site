@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — TradesFlow AI</title>
+<meta name="description" content="The story behind TradesFlow AI — built for UK tradespeople, by someone who gets it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #0f1b2d; --blue: #1a73e8; --blue2: #1558b0;
+  --amber: #f59e0b; --light: #f0f4ff; --white: #ffffff;
+  --grey: #6b7280; --border: #e2e8f0; --text: #1e293b;
+  --radius: 12px; --shadow: 0 4px 24px rgba(15,27,45,0.10);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--text); background: #f8fafc; line-height: 1.6; }
+
+nav { background: var(--navy); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.nav-logo { font-family: 'Sora', sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--white); text-decoration: none; letter-spacing: -0.5px; }
+.nav-logo span { color: var(--amber); }
+.nav-links { display: flex; gap: 4px; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 8px 14px; border-radius: 8px; transition: background 0.2s, color 0.2s; }
+.nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.1); color: var(--white); }
+.nav-cta { background: var(--amber) !important; color: var(--navy) !important; font-weight: 700 !important; }
+.nav-cta:hover { background: #e08e00 !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+/* PAGE HERO */
+.page-hero { background: linear-gradient(135deg, var(--navy) 0%, #1a2f52 100%); color: var(--white); padding: 72px 24px 64px; }
+.page-hero-inner { max-width: 780px; margin: 0 auto; }
+.breadcrumb { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+.breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+.breadcrumb a:hover { color: var(--white); }
+.page-hero h1 { font-family: 'Sora', sans-serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+.page-hero p { font-size: 1.05rem; color: rgba(255,255,255,0.78); line-height: 1.7; }
+
+/* SECTIONS */
+.section { padding: 72px 24px; }
+.section-inner { max-width: 900px; margin: 0 auto; }
+.section-label { display: inline-block; background: var(--light); color: var(--blue); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; }
+.section-title { font-family: 'Sora', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 20px; }
+
+/* STORY */
+.story { background: var(--white); }
+.story-body { font-size: 1rem; color: #374151; line-height: 1.8; }
+.story-body p + p { margin-top: 20px; }
+
+/* VALUES GRID */
+.values { background: var(--light); }
+.values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 40px; }
+.value-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
+.value-icon { font-size: 2rem; margin-bottom: 14px; }
+.value-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.value-card p { font-size: 0.875rem; color: var(--grey); line-height: 1.6; }
+
+/* TRADES */
+.trades { background: var(--white); }
+.trades-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-top: 36px; }
+.trade-pill { background: var(--light); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; text-align: center; font-weight: 600; font-size: 0.9rem; color: var(--navy); }
+
+/* CTA */
+.cta-banner { background: linear-gradient(135deg, var(--navy) 0%, #1a2f52 100%); padding: 72px 24px; text-align: center; }
+.cta-banner-inner { max-width: 680px; margin: 0 auto; }
+.cta-banner h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: var(--white); margin-bottom: 16px; }
+.cta-banner p { color: rgba(255,255,255,0.75); font-size: 1rem; margin-bottom: 32px; }
+.btn { display: inline-block; padding: 14px 28px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; cursor: pointer; border: none; transition: transform 0.15s; }
+.btn:hover { transform: translateY(-2px); }
+.btn-amber { background: var(--amber); color: var(--navy); }
+.btn-amber:hover { background: #e08e00; }
+
+footer { background: var(--navy); color: rgba(255,255,255,0.65); padding: 48px 24px 24px; margin-top: 0; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.footer-logo { font-family: 'Sora', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--white); text-decoration: none; }
+.footer-logo span { color: var(--amber); }
+.footer-desc { font-size: 0.875rem; margin-top: 12px; line-height: 1.6; }
+.footer-col h4 { color: var(--white); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+.footer-col a:hover { color: var(--white); }
+.footer-bottom { max-width: 1100px; margin: 24px auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 0.8rem; }
+.footer-bottom a { color: rgba(255,255,255,0.45); text-decoration: none; }
+.whatsapp-float { position: fixed; bottom: 24px; left: 24px; background: #25D366; color: white; padding: 10px 18px; border-radius: 50px; font-size: 0.875rem; font-weight: 600; text-decoration: none; box-shadow: 0 4px 16px rgba(37,211,102,0.4); z-index: 90; display: flex; align-items: center; gap: 8px; transition: transform 0.2s; }
+.whatsapp-float:hover { transform: translateY(-2px); }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--navy); padding: 16px 24px 24px; gap: 4px; }
+  .nav-links.open { display: flex; }
+  .hamburger { display: flex; }
+  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+  .section { padding: 52px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Trades<span>Flow</span> AI</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="about.html" class="active">About Us</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="https://calendly.com/ct-paypaluk/30min" class="nav-cta" target="_blank">Book a Free Call</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> / About Us</div>
+    <h1>👋 The story behind<br>TradesFlow AI</h1>
+    <p>Built for tradespeople, by someone who gets it. We exist because too many skilled tradespeople are losing good leads — not because they're bad at their trade, but because they're busy doing it.</p>
+  </div>
+</section>
+
+<section class="section story">
+  <div class="section-inner">
+    <span class="section-label">Our Story</span>
+    <h2 class="section-title">Built for the real world of trades</h2>
+    <div class="story-body">
+      <p>The reality for most plumbers, electricians, builders and heating engineers is the same: you're on a job, your phone rings, you can't answer, and that customer moves on to the next number on Google. You never even knew they called.</p>
+      <p>We built Amy to fix that. She holds a real conversation, captures what matters — name, number, full address, job description and urgency — and gets the details to you immediately so you can call back and win the work.</p>
+      <p>But we didn't stop at the receptionist. We looked at all the other places trades businesses leak money: quotes that go cold because nobody follows up, invoices that sit unpaid for weeks because chasing feels awkward, and happy customers who never leave a review because nobody asked them at the right moment.</p>
+      <p>TradesFlow AI addresses all of it, automatically, in the background, while you get on with the job you actually love doing.</p>
+      <p>We handle everything from setup to ongoing support. You don't need to understand AI, you don't need a web developer, and you don't need to change how you work. TradesFlow AI slots in around you — live within 48 hours, with zero technical knowledge required on your part.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section values">
+  <div class="section-inner">
+    <span class="section-label">How We Work</span>
+    <h2 class="section-title">What we stand for</h2>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🎯</div>
+        <h3>Our Mission</h3>
+        <p>Give every tradesperson the same professional front-of-house that big companies take for granted — without the big company price tag.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <h3>How We Work</h3>
+        <p>Small team, real people. When you sign up you deal with us directly — not a ticket system, not a chatbot, not a call centre.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🇬🇧</div>
+        <h3>UK Focused</h3>
+        <p>Built specifically for UK trades. Amy understands UK addresses, UK urgency levels, and how British customers actually speak.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">📈</div>
+        <h3>Always Improving</h3>
+        <p>We update Amy regularly based on real conversations and feedback from trades on the ground. Your experience gets better over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section trades">
+  <div class="section-inner">
+    <span class="section-label">Who We Work With</span>
+    <h2 class="section-title">Trades we work exclusively with</h2>
+    <p style="color:var(--grey);font-size:0.95rem;margin-bottom:0">We don't do generic. Every system is configured for your specific trade, your terminology, and your customers.</p>
+    <div class="trades-grid">
+      <div class="trade-pill">🔧 Plumbers</div>
+      <div class="trade-pill">⚡ Electricians</div>
+      <div class="trade-pill">🏗️ Builders</div>
+      <div class="trade-pill">🌿 Landscapers</div>
+      <div class="trade-pill">🔥 Heating Engineers</div>
+      <div class="trade-pill">🪟 Roofers</div>
+      <div class="trade-pill">🏠 Plasterers</div>
+      <div class="trade-pill">🔨 General Maintenance</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <h2>Ready to see Amy in action?</h2>
+    <p>Book a free 20-minute call and we'll show you exactly what your AI system will look like — no tech knowledge needed, no obligation.</p>
+    <a href="https://calendly.com/ct-paypaluk/30min" target="_blank" class="btn btn-amber">Book a Free Consultation</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="footer-logo">Trades<span>Flow</span> AI</a>
+      <p class="footer-desc">Done-for-you AI systems for UK tradespeople. We set everything up — you just start getting leads.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get Started</h4>
+      <ul>
+        <li><a href="https://calendly.com/ct-paypaluk/30min" target="_blank">Book a Free Call</a></li>
+        <li><a href="mailto:hello@tradesflowai.co.uk">hello@tradesflowai.co.uk</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 TradesFlow AI. All rights reserved. United Kingdom.</span>
+    <a href="mailto:hello@tradesflowai.co.uk">hello@tradesflowai.co.uk</a>
+  </div>
+</footer>
+
+<a href="https://wa.me/447700000000" target="_blank" class="whatsapp-float">💬 WhatsApp Us</a>
+
+<script>
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+</script>
+</body>
+</html>

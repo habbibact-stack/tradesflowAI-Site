@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — TradesFlow AI</title>
+<meta name="description" content="Frequently asked questions about TradesFlow AI — answered honestly. No fluff.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #0f1b2d; --blue: #1a73e8; --blue2: #1558b0;
+  --amber: #f59e0b; --light: #f0f4ff; --white: #ffffff;
+  --grey: #6b7280; --border: #e2e8f0; --text: #1e293b;
+  --radius: 12px; --shadow: 0 4px 24px rgba(15,27,45,0.10);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--text); background: #f8fafc; line-height: 1.6; }
+
+nav { background: var(--navy); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.nav-logo { font-family: 'Sora', sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--white); text-decoration: none; letter-spacing: -0.5px; }
+.nav-logo span { color: var(--amber); }
+.nav-links { display: flex; gap: 4px; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 8px 14px; border-radius: 8px; transition: background 0.2s, color 0.2s; }
+.nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.1); color: var(--white); }
+.nav-cta { background: var(--amber) !important; color: var(--navy) !important; font-weight: 700 !important; }
+.nav-cta:hover { background: #e08e00 !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+.page-hero { background: linear-gradient(135deg, var(--navy) 0%, #1a2f52 100%); color: var(--white); padding: 72px 24px 64px; }
+.page-hero-inner { max-width: 780px; margin: 0 auto; }
+.breadcrumb { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+.breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+.breadcrumb a:hover { color: var(--white); }
+.page-hero h1 { font-family: 'Sora', sans-serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+.page-hero p { font-size: 1.05rem; color: rgba(255,255,255,0.78); line-height: 1.7; }
+
+.section { padding: 72px 24px; }
+.section-inner { max-width: 760px; margin: 0 auto; }
+.section-label { display: inline-block; background: var(--light); color: var(--blue); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; }
+.section-title { font-family: 'Sora', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 36px; }
+
+/* ACCORDION */
+.faq-group { margin-bottom: 40px; }
+.faq-group-title { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; }
+.accordion { display: flex; flex-direction: column; gap: 12px; }
+.accordion-item { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.accordion-trigger { width: 100%; background: none; border: none; text-align: left; padding: 20px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.accordion-trigger h3 { font-size: 0.95rem; font-weight: 600; color: var(--navy); line-height: 1.4; }
+.accordion-icon { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; background: var(--light); display: flex; align-items: center; justify-content: center; color: var(--navy); font-size: 1rem; font-weight: 700; transition: transform 0.25s; }
+.accordion-item.open .accordion-icon { transform: rotate(45deg); background: var(--navy); color: var(--white); }
+.accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.accordion-body-inner { padding: 0 24px 20px; font-size: 0.9rem; color: #374151; line-height: 1.75; }
+.accordion-body-inner a { color: var(--blue); text-decoration: underline; }
+
+/* CTA */
+.cta-banner { background: linear-gradient(135deg, var(--navy) 0%, #1a2f52 100%); padding: 72px 24px; text-align: center; }
+.cta-banner-inner { max-width: 680px; margin: 0 auto; }
+.cta-banner h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: var(--white); margin-bottom: 16px; }
+.cta-banner p { color: rgba(255,255,255,0.75); font-size: 1rem; margin-bottom: 32px; }
+.btn { display: inline-block; padding: 14px 28px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; cursor: pointer; border: none; transition: transform 0.15s; }
+.btn:hover { transform: translateY(-2px); }
+.btn-amber { background: var(--amber); color: var(--navy); }
+.btn-amber:hover { background: #e08e00; }
+
+footer { background: var(--navy); color: rgba(255,255,255,0.65); padding: 48px 24px 24px; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.footer-logo { font-family: 'Sora', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--white); text-decoration: none; }
+.footer-logo span { color: var(--amber); }
+.footer-desc { font-size: 0.875rem; margin-top: 12px; line-height: 1.6; }
+.footer-col h4 { color: var(--white); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+.footer-col a:hover { color: var(--white); }
+.footer-bottom { max-width: 1100px; margin: 24px auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 0.8rem; }
+.footer-bottom a { color: rgba(255,255,255,0.45); text-decoration: none; }
+.whatsapp-float { position: fixed; bottom: 24px; left: 24px; background: #25D366; color: white; padding: 10px 18px; border-radius: 50px; font-size: 0.875rem; font-weight: 600; text-decoration: none; box-shadow: 0 4px 16px rgba(37,211,102,0.4); z-index: 90; display: flex; align-items: center; gap: 8px; transition: transform 0.2s; }
+.whatsapp-float:hover { transform: translateY(-2px); }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--navy); padding: 16px 24px 24px; gap: 4px; }
+  .nav-links.open { display: flex; }
+  .hamburger { display: flex; }
+  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+  .section { padding: 52px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Trades<span>Flow</span> AI</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="faq.html" class="active">FAQ</a></li>
+      <li><a href="https://calendly.com/ct-paypaluk/30min" class="nav-cta" target="_blank">Book a Free Call</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> / FAQ</div>
+    <h1>❓ Got questions?</h1>
+    <p>Everything tradespeople ask us before signing up — answered honestly. No fluff, no sales speak.</p>
+  </div>
+</section>
+
+<section class="section" style="background:var(--white)">
+  <div class="section-inner">
+    <span class="section-label">Frequently Asked Questions</span>
+    <h2 class="section-title">Find your answer below</h2>
+
+    <!-- GROUP: Amy -->
+    <div class="faq-group">
+      <div class="faq-group-title">About Amy</div>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <h3>Does Amy sound like a robot?</h3>
+            <div class="accordion-icon">+</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              No. Amy speaks in natural, conversational English. She introduces herself as an AI receptionist so customers always know who they're talking to — but the conversation flows naturally, not like a rigid script. Most customers find the experience fast and straightforward.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <h3>What trades does it work for?</h3>
+            <div class="accordion-icon">+</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              Any trade that gets enquiries via a website: plumbers, electricians, heating engineers, builders, roofers, plasterers, landscapers and general maintenance contractors. We configure Amy specifically for your trade and your terminology — she knows what your customers mean when they say "combi boiler" or "first fix."
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <h3>Can I change Amy's name?</h3>
+            <div class="accordion-icon">+</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              Yes — on the Growth plan we give the AI receptionist a custom name to match your brand. So she could be "Sarah from Smith Plumbing" or "Jake from Leeds Electrical" instead of Amy. On Starter and Professional plans, the name stays as Amy.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GROUP: Setup -->
+    <div class="faq-group">
+      <div class="faq-group-title">Setup & Getting Started</div>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <h3>How long does setup take?</h3>
+            <div class="accordion-icon">+</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              We typically have everything live within 48 hours of your onboarding call. We handle the full setup — Amy's configuration, Google Sheet connection, WhatsApp notifications and any automations you've chosen. You don't need to do anything technical at all.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <h3>Do I need to be technical to use TradesFlow AI?</h3>
+            <div class="accordion-icon">+</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              Not at all. We set everything up for you. Once it's live, all you do is receive WhatsApp notifications and check your Google Sheet. There's nothing to configure, update or manage on your end.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <h3>Where do the leads go?</h3>
+            <div class="accordion-icon">+</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              Every lead is logged to your Google Sheet in real time — name, phone number, full address, job description and urgency, all filled in automatically. You also get a WhatsApp notification the moment a new lead comes in, so you're always across it even when you're on the tools.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GROUP: Pricing -->
+    <div class="faq-group">
+      <div class="faq-group-title">Pricing & Contracts</div>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <h3>Is there a long-term contract?</h3>
+            <div class="accordion-icon">+</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              No. All plans are month to month. There's a one-time setup fee of £497 which covers everything we build for you, then you pay monthly and can cancel any time with 30 days notice.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <h3>What's the difference between the plans?</h3>
+            <div class="accordion-icon">+</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              All plans include Amy as your 24/7 AI receptionist with full lead capture and WhatsApp notifications. The Professional plan (£297/mo) adds automated quote follow-up, invoice chasing and review requests. The Growth plan (£497/mo) adds a custom AI name and branding, multi-user access and a monthly strategy call. Most established tradespeople find Professional the best fit.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <h3>Why is there a setup fee?</h3>
+            <div class="accordion-icon">+</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              The setup fee covers the time it takes to configure Amy specifically for your trade, connect your Google Sheet, set up your notifications and integrate everything into your website. It's a genuine amount of work — we don't cut corners. You're getting a fully built system, not a generic template.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GROUP: Results -->
+    <div class="faq-group">
+      <div class="faq-group-title">Results & Support</div>
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <h3>How quickly will I see results?</h3>
+            <div class="accordion-icon">+</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              Most tradespeople see their first captured lead within hours of going live — usually a lead that would previously have been missed. The difference is most visible for anyone who misses calls regularly or doesn't have an answering service. If you're busy on the tools and your phone goes unanswered, Amy will make an immediate difference.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <h3>What support do I get after setup?</h3>
+            <div class="accordion-icon">+</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              You deal with us directly — not a ticket system or a call centre. We're a small team and we take support seriously. If something's not working or you want a change made, you can reach us directly and we'll sort it quickly. Growth plan customers also get a monthly strategy call.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">
+            <h3>What if I want to cancel?</h3>
+            <div class="accordion-icon">+</div>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              You can cancel any time with 30 days notice. There's no penalty, no awkward conversation, and no hidden fees. We'd obviously rather keep you as a customer, so if something's not working we'll always try to fix it first — but you're never locked in.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <h2>Still have questions?</h2>
+    <p>Book a free 20-minute call and ask us anything. No hard sell, no obligation — just straight answers about whether TradesFlow AI is right for your business.</p>
+    <a href="https://calendly.com/ct-paypaluk/30min" target="_blank" class="btn btn-amber">Book a Free Call</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="footer-logo">Trades<span>Flow</span> AI</a>
+      <p class="footer-desc">Done-for-you AI systems for UK tradespeople. We set everything up — you just start getting leads.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get Started</h4>
+      <ul>
+        <li><a href="https://calendly.com/ct-paypaluk/30min" target="_blank">Book a Free Call</a></li>
+        <li><a href="mailto:hello@tradesflowai.co.uk">hello@tradesflowai.co.uk</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 TradesFlow AI. All rights reserved. United Kingdom.</span>
+    <a href="mailto:hello@tradesflowai.co.uk">hello@tradesflowai.co.uk</a>
+  </div>
+</footer>
+
+<a href="https://wa.me/447700000000" target="_blank" class="whatsapp-float">💬 WhatsApp Us</a>
+
+<script>
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// Accordion
+document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+  trigger.addEventListener('click', () => {
+    const item = trigger.closest('.accordion-item');
+    const body = item.querySelector('.accordion-body');
+    const isOpen = item.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.accordion-item.open').forEach(open => {
+      open.classList.remove('open');
+      open.querySelector('.accordion-body').style.maxHeight = null;
+    });
+
+    // Open clicked if it was closed
+    if (!isOpen) {
+      item.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  });
+});
+</script>
+</body>
+</html>
