@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TradesFlow AI — AI Systems for UK Tradespeople</title>
-<meta name="description" content="TradesFlow AI installs a done-for-you AI system for UK tradespeople. 24/7 enquiry handling, quote follow-up, invoice chasing and review generation.">
+<title>AI Receptionist for Tradesmen UK | Never Miss a Job Again — TradesFlow AI</title>
+<meta name="description" content="Stop losing jobs to missed calls. TradesFlow AI gives UK plumbers, electricians and builders a 24/7 AI assistant that captures leads, chases quotes and invoices, and organises receipts for tax time. Live in 48 hours.">
+<meta name="keywords" content="AI receptionist for tradesmen, missed call answering service UK, AI for plumbers, AI for electricians, lead capture for tradespeople, automated invoice chasing UK">
 <link rel="canonical" href="https://tradesflowai.co.uk/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@700;800&display=swap" rel="stylesheet">
@@ -40,6 +41,13 @@ nav{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 12
 .btn-primary{background:var(--blue);color:var(--white)}
 .btn-primary:hover{background:var(--blue2)}
 .btn-outline-navy{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+.stat-strip{background:#142640;padding:28px 24px}
+.stat-strip-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
+.stat-block{text-align:center}
+.stat-num{font-family:'Sora',sans-serif;font-size:2rem;font-weight:800;color:var(--amber);line-height:1}
+.stat-label{font-size:0.8rem;color:rgba(255,255,255,0.7);margin-top:6px;max-width:180px}
+.stat-divider{width:1px;height:44px;background:rgba(255,255,255,0.15)}
+@media(max-width:768px){.stat-strip-inner{gap:24px}.stat-divider{display:none}.stat-num{font-size:1.6rem}}
 .pain{background:var(--white);padding:72px 24px}
 .pain-inner{max-width:1100px;margin:0 auto}
 .section-label{display:inline-block;background:var(--light);color:var(--blue);font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:16px}
@@ -107,7 +115,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
 .footer-bottom{max-width:1100px;margin:24px auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:0.8rem}
 .footer-bottom a{color:rgba(255,255,255,0.45);text-decoration:none}
 .footer-bottom a:hover{color:var(--white)}
-.whatsapp-float{position:fixed;bottom:24px;left:24px;background:#25D366;color:white;padding:10px 18px;border-radius:50px;font-size:0.875rem;font-weight:600;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,0.4);z-index:90;display:flex;align-items:center;gap:8px;transition:transform 0.2s,bottom 0.35s cubic-bezier(0.4,0,0.2,1)}
+.whatsapp-float{position:fixed;bottom:96px;right:24px;background:#25D366;color:white;padding:10px 18px;border-radius:50px;font-size:0.875rem;font-weight:600;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,0.4);z-index:199;display:flex;align-items:center;gap:8px;transition:transform 0.2s,bottom 0.35s cubic-bezier(0.4,0,0.2,1)}
 .whatsapp-float:hover{transform:translateY(-2px)}
 .chat-launcher{position:fixed;bottom:24px;right:24px;z-index:200}
 /* Trust badges */
@@ -168,7 +176,11 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
   .footer-inner{grid-template-columns:1fr;gap:28px}
   .chat-window{width:calc(100vw - 32px);right:16px;bottom:88px}
   .hero,.pain,.features,.pricing,.testimonials,.try-amy,.cta-banner{padding-left:20px;padding-right:20px}
-  .pain-grid{grid-template-columns:1fr}
+  .pain-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .pain-card{padding:14px 10px;flex-direction:column;text-align:center;gap:8px}
+  .pain-card h3{font-size:0.72rem;margin-bottom:3px;line-height:1.25}
+  .pain-card p{display:none}
+  .pain-icon{font-size:1.3rem;margin-top:0}
 }
 </style>
 </head>
@@ -193,7 +205,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
   <div class="hero-inner">
     <div class="hero-badge">🤖 AI-powered · UK Tradespeople · 24/7</div>
     <h1>Still missing calls<br>while you're <em>on the job?</em></h1>
-    <p>TradesFlow AI installs a done-for-you AI system called Amy that answers enquiries 24/7, follows up on quotes, chases invoices and gets you more 5-star reviews — without you lifting a finger.</p>
+    <p>TradesFlow AI installs Amy — your full-time operations team in one system. She answers enquiries 24/7, follows up on quotes, chases invoices, organises your receipts for tax time, and gets you more 5-star reviews. All without you lifting a finger.</p>
     <div class="hero-btns">
       <a href="https://calendly.com/ct-paypaluk/30min" target="_blank" rel="noopener" class="btn btn-amber">Book a Free 20-Min Call</a>
       <button class="btn btn-ghost" id="tryAmyBtn">💬 Try Amy Now</button>
@@ -201,20 +213,23 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
   </div>
 </section>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="trust-bar-inner">
-    <div class="trust-item"><div class="trust-icon green">🔒</div><span>GDPR Compliant</span></div>
-    <div class="trust-divider"></div>
-    <div class="trust-item"><div class="trust-icon blue">🇬🇧</div><span>UK Based Business</span></div>
-    <div class="trust-divider"></div>
-    <div class="trust-item"><div class="trust-icon green">🛡️</div><span>SSL Secure</span></div>
-    <div class="trust-divider"></div>
-    <div class="trust-item"><div class="trust-icon amber">💳</div><span>Secure Payments via Stripe</span></div>
-    <div class="trust-divider"></div>
-    <div class="trust-item"><div class="trust-icon blue">⭐</div><span>No Long-Term Contracts</span></div>
-    <div class="trust-divider"></div>
-    <div class="trust-item"><div class="trust-icon green">📞</div><span>Cancel Any Time</span></div>
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-strip-inner">
+    <div class="stat-block">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Jobs lost a week on average to missed calls</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-block">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Amy never sleeps, never takes a day off</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-block">
+      <div class="stat-num">48hrs</div>
+      <div class="stat-label">From sign-up to fully live on your site</div>
+    </div>
   </div>
 </div>
 
@@ -236,7 +251,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
 
 <section class="try-amy">
   <div class="try-amy-inner">
-    <h2>Meet Amy — your AI receptionist</h2>
+    <h2>Meet Amy — your full-time operations team</h2>
     <p>Amy answers every enquiry instantly, captures the details, and gets them straight to you. Try her now and see exactly what your customers experience.</p>
     <button class="btn btn-primary" id="tryAmyBtn2">💬 Try Amy Now</button>
   </div>
@@ -253,7 +268,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
       <div class="feature-card"><div class="feature-icon">📩</div><h3>Quote &amp; Invoice Chaser</h3><p>Amy follows up on quotes that go quiet and chases overdue invoices at day 3, 7 and 14 — automatically, so you get paid without the awkward conversation.</p></div>
       <div class="feature-card"><div class="feature-icon">⭐</div><h3>Review Request Agent</h3><p>Sends a personalised thank-you and Google review link after every completed job — at exactly the right moment, while the customer is still happy.</p></div>
       <div class="feature-card"><div class="feature-icon">🧾</div><h3>Your Personal Accountant</h3><p>Snap a photo of any receipt and send it to Amy. She reads it, logs the amount and supplier to a spreadsheet, and files the image in a tidy folder — so your accountant has everything they need at tax time and you claim back every penny you're owed.</p></div>
-      <div class="feature-card"><div class="feature-icon">📊</div><h3>Weekly Business Summary</h3><p>Every Monday morning: how many new enquiries came in, which quotes are still open, who owes you money, and how many reviews you've picked up — delivered straight to your WhatsApp.</p></div>
+      <div class="feature-card"><div class="feature-icon">📊</div><h3>Weekly Pipeline Report</h3><p>Every Monday morning Amy sends you a WhatsApp summary of your week — new enquiries, quotes still waiting for an answer, unpaid invoices, and reviews earned. Think of it as a quick snapshot of exactly where your business stands, so nothing slips through the cracks.</p></div>
     </div>
   </div>
 </section>
@@ -287,7 +302,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
           <li>Automated quote follow-up</li>
           <li>Invoice chaser (day 3, 7, 14)</li>
           <li>Review request agent</li>
-          <li>Weekly WhatsApp business summary</li>
+          <li>Weekly WhatsApp pipeline report</li>
           <li>Receipt organiser for tax returns</li>
         </ul>
         <a href="https://calendly.com/ct-paypaluk/30min" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;text-align:center">Get Started</a>
@@ -359,6 +374,23 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
     </div>
   </div>
 </section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><div class="trust-icon green">🔒</div><span>GDPR Compliant</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon blue">🇬🇧</div><span>UK Based Business</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon green">🛡️</div><span>SSL Encrypted</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon amber">💳</div><span>Secure Payments via Stripe</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon blue">📋</div><span>No Long-Term Contracts</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon green">✅</div><span>Cancel Any Time</span></div>
+  </div>
+</div>
 
 <footer>
   <div class="footer-inner">
@@ -437,14 +469,13 @@ document.getElementById('hamburger').addEventListener('click', function(){
   document.getElementById('navLinks').classList.toggle('open');
 });
 
-// ── WhatsApp float rises above chat window when open ──
+// ── WhatsApp float sits above Amy button, rises when chat opens ──
 const waBtn = document.querySelector('.whatsapp-float');
 function updateWaPosition(chatOpen) {
   if (chatOpen) {
-    // chat window is 540px tall + 96px bottom offset + 12px gap
     waBtn.style.bottom = '660px';
   } else {
-    waBtn.style.bottom = '24px';
+    waBtn.style.bottom = '96px';
   }
 }
 
