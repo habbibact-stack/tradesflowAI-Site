@@ -119,14 +119,11 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
 .whatsapp-float:hover{transform:translateY(-2px)}
 .chat-launcher{position:fixed;bottom:24px;right:24px;z-index:200}
 /* Trust badges */
-.trust-bar{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px 24px}
+.trust-bar{background:var(--navy);border-top:1px solid rgba(255,255,255,0.08);padding:28px 24px}
 .trust-bar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
-.trust-item{display:flex;align-items:center;gap:10px;color:#374151;font-size:0.82rem;font-weight:600}
-.trust-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
-.trust-icon.green{background:#dcfce7}
-.trust-icon.blue{background:#dbeafe}
-.trust-icon.amber{background:#fef3c7}
-.trust-divider{width:1px;height:32px;background:var(--border);flex-shrink:0}
+.trust-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.85);font-size:0.82rem;font-weight:600}
+.trust-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;background:rgba(255,255,255,0.08)}
+.trust-divider{width:1px;height:32px;background:rgba(255,255,255,0.15);flex-shrink:0}
 @media(max-width:768px){.trust-divider{display:none}.trust-bar-inner{gap:20px}.trust-item{font-size:0.78rem}}
 .chat-bubble-btn{width:60px;height:60px;background:var(--navy);border-radius:50%;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;font-size:1.5rem;transition:transform 0.2s}
 .chat-bubble-btn:hover{transform:scale(1.08)}
@@ -205,7 +202,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
   <div class="hero-inner">
     <div class="hero-badge">🤖 AI-powered · UK Tradespeople · 24/7</div>
     <h1>Still missing calls<br>while you're <em>on the job?</em></h1>
-    <p>TradesFlow AI installs Amy — your 24/7 operations team in one system. She answers enquiries 24/7, follows up on quotes, chases invoices, organises your receipts for tax time, and gets you more 5-star reviews. All without you lifting a finger.</p>
+    <p>TradesFlow AI installs Amy — your 24/7 operations team in one system. She answers enquiries day and night, follows up on quotes, chases invoices, organises your receipts for tax time, and gets you more 5-star reviews. All without you lifting a finger.</p>
     <div class="hero-btns">
       <a href="https://calendly.com/ct-paypaluk/30min" target="_blank" rel="noopener" class="btn btn-amber">Book a Free 20-Min Call</a>
       <button class="btn btn-ghost" id="tryAmyBtn">💬 Try Amy Now</button>
@@ -364,23 +361,6 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
   </div>
 </section>
 
-  <!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="trust-bar-inner">
-    <div class="trust-item"><div class="trust-icon green">🔒</div><span>GDPR Compliant</span></div>
-    <div class="trust-divider"></div>
-    <div class="trust-item"><div class="trust-icon blue">🇬🇧</div><span>UK Based Business</span></div>
-    <div class="trust-divider"></div>
-    <div class="trust-item"><div class="trust-icon green">🛡️</div><span>SSL Encrypted</span></div>
-    <div class="trust-divider"></div>
-    <div class="trust-item"><div class="trust-icon amber">💳</div><span>Secure Payments via Stripe</span></div>
-    <div class="trust-divider"></div>
-    <div class="trust-item"><div class="trust-icon blue">📋</div><span>No Long-Term Contracts</span></div>
-    <div class="trust-divider"></div>
-    <div class="trust-item"><div class="trust-icon green">✅</div><span>Cancel Any Time</span></div>
-  </div>
-</div>
-  
 <section class="cta-banner">
   <div class="cta-banner-inner">
     <h2>Ready to stop losing leads?</h2>
@@ -391,6 +371,23 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
     </div>
   </div>
 </section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><div class="trust-icon">🔒</div><span>GDPR Compliant</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon">🇬🇧</div><span>UK Based Business</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon">🛡️</div><span>SSL Encrypted</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon">💳</div><span>Secure Payments via Stripe</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon">📋</div><span>No Long-Term Contracts</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon">✅</div><span>Cancel Any Time</span></div>
+  </div>
+</div>
 
 <footer>
   <div class="footer-inner">
@@ -412,7 +409,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
         <li><a href="privacy.html">Privacy Policy</a></li>
         <li><a href="cookies.html">Cookie Policy</a></li>
         <li><a href="https://calendly.com/ct-paypaluk/30min" target="_blank" rel="noopener">Book a Free Call</a></li>
-        <li><a href="mailto:hello@tradesflowai.co.uk">hello@tradesflowai.co.uk</a></li>
+        <li><a href="mailto:Info@TradesFlowAI.co.uk">Info@TradesFlowAI.co.uk</a></li>
       </ul>
     </div>
   </div>
@@ -421,7 +418,7 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24p
     <span style="display:flex;gap:16px;flex-wrap:wrap">
       <a href="privacy.html">Privacy Policy</a>
       <a href="cookies.html">Cookies</a>
-      <a href="mailto:hello@tradesflowai.co.uk">hello@tradesflowai.co.uk</a>
+      <a href="mailto:Info@TradesFlowAI.co.uk">Info@TradesFlowAI.co.uk</a>
     </span>
   </div>
 </footer>
