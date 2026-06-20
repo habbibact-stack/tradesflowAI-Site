@@ -3,59 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cookie Policy — TradesFlow AI</title>
-<meta name="description" content="TradesFlow AI cookie policy — what cookies we use and why.">
-<link rel="canonical" href="https://tradesflowai.co.uk/cookies.html">
+<title>How It Works — TradesFlow AI</title>
+<meta name="description" content="See exactly how TradesFlow AI works — from customer enquiry to lead in your Google Sheet in seconds.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@700;800&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#0f1b2d;--blue:#1a73e8;--amber:#f59e0b;--white:#ffffff;--grey:#6b7280;--border:#e2e8f0;--text:#1e293b;--radius:12px}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;color:var(--text);background:#f8fafc;line-height:1.6}
-nav{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.18)}
-.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
-.nav-logo{font-family:'Sora',sans-serif;font-size:1.25rem;font-weight:800;color:var(--white);text-decoration:none;letter-spacing:-0.5px}
-.nav-logo span{color:var(--amber)}
-.nav-links{display:flex;gap:4px;list-style:none}
-.nav-links a{color:rgba(255,255,255,0.82);text-decoration:none;font-size:0.9rem;font-weight:500;padding:8px 14px;border-radius:8px;transition:background 0.2s,color 0.2s}
-.nav-links a:hover{background:rgba(255,255,255,0.1);color:var(--white)}
-.nav-cta{background:var(--amber)!important;color:var(--navy)!important;font-weight:700!important}
-.nav-cta:hover{background:#e08e00!important}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
-.hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px}
-.page-hero{background:linear-gradient(135deg,var(--navy) 0%,#1a2f52 100%);color:var(--white);padding:60px 24px 52px}
-.page-hero-inner{max-width:780px;margin:0 auto}
-.breadcrumb{font-size:0.8rem;color:rgba(255,255,255,0.5);margin-bottom:16px}
-.breadcrumb a{color:rgba(255,255,255,0.5);text-decoration:none}
-.breadcrumb a:hover{color:var(--white)}
-.page-hero h1{font-family:'Sora',sans-serif;font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:800;margin-bottom:12px}
-.page-hero p{color:rgba(255,255,255,0.7);font-size:0.9rem}
-.content{max-width:780px;margin:0 auto;padding:60px 24px 80px}
-.content h2{font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:800;color:var(--navy);margin:36px 0 12px}
-.content h2:first-child{margin-top:0}
-.content p{font-size:0.95rem;color:#374151;line-height:1.8;margin-bottom:14px}
-.content ul{margin:8px 0 14px 20px;display:flex;flex-direction:column;gap:8px}
-.content ul li{font-size:0.95rem;color:#374151;line-height:1.7}
-.content a{color:var(--blue)}
-.highlight-box{background:#f0f4ff;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;font-size:0.9rem;color:#374151;line-height:1.7}
-.cookie-table{width:100%;border-collapse:collapse;margin:20px 0 14px;font-size:0.88rem}
-.cookie-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:600}
-.cookie-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:#374151;vertical-align:top}
-.cookie-table tr:last-child td{border-bottom:none}
-.cookie-table tr:nth-child(even) td{background:#f8fafc}
-footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:40px 24px 24px}
-.footer-bottom{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:0.8rem}
-.footer-bottom a{color:rgba(255,255,255,0.45);text-decoration:none}
-.footer-bottom a:hover{color:var(--white)}
-.whatsapp-float{position:fixed;bottom:24px;left:24px;background:#25D366;color:white;padding:10px 18px;border-radius:50px;font-size:0.875rem;font-weight:600;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,0.4);z-index:90;display:flex;align-items:center;gap:8px;transition:transform 0.2s}
-.whatsapp-float:hover{transform:translateY(-2px)}
-@media(max-width:768px){
-  .nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--navy);padding:16px 24px 24px;gap:4px}
-  .nav-links.open{display:flex}
-  .hamburger{display:flex}
-  .cookie-table{font-size:0.8rem}
-  .cookie-table th,.cookie-table td{padding:8px 10px}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #0f1b2d; --blue: #1a73e8; --blue2: #1558b0;
+  --amber: #f59e0b; --light: #f0f4ff; --white: #ffffff;
+  --grey: #6b7280; --border: #e2e8f0; --text: #1e293b;
+  --radius: 12px; --shadow: 0 4px 24px rgba(15,27,45,0.10);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--text); background: #f8fafc; line-height: 1.6; }
+
+nav { background: var(--navy); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.nav-logo { font-family: 'Sora', sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--white); text-decoration: none; letter-spacing: -0.5px; }
+.nav-logo span { color: var(--amber); }
+.nav-links { display: flex; gap: 4px; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 8px 14px; border-radius: 8px; transition: background 0.2s, color 0.2s; }
+.nav-links a:hover, .nav-links a.active { background: rgba(255,255,255,0.1); color: var(--white); }
+.nav-cta { background: var(--amber) !important; color: var(--navy) !important; font-weight: 700 !important; }
+.nav-cta:hover { background: #e08e00 !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+.page-hero { background: linear-gradient(135deg, var(--navy) 0%, #1a2f52 100%); color: var(--white); padding: 72px 24px 64px; }
+.page-hero-inner { max-width: 780px; margin: 0 auto; }
+.breadcrumb { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+.breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+.breadcrumb a:hover { color: var(--white); }
+.page-hero h1 { font-family: 'Sora', sans-serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+.page-hero p { font-size: 1.05rem; color: rgba(255,255,255,0.78); line-height: 1.7; }
+
+.section { padding: 72px 24px; }
+.section-inner { max-width: 900px; margin: 0 auto; }
+.section-label { display: inline-block; background: var(--light); color: var(--blue); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; }
+.section-title { font-family: 'Sora', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 20px; }
+
+/* STEPS */
+.steps { background: var(--white); }
+.steps-list { margin-top: 48px; display: flex; flex-direction: column; gap: 0; }
+.step { display: flex; gap: 28px; position: relative; padding-bottom: 40px; }
+.step:last-child { padding-bottom: 0; }
+.step-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.step-number { width: 48px; height: 48px; border-radius: 50%; background: var(--navy); color: var(--white); font-family: 'Sora', sans-serif; font-size: 1.1rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-line { width: 2px; flex: 1; background: var(--border); margin-top: 8px; }
+.step:last-child .step-line { display: none; }
+.step-body { padding-top: 10px; }
+.step-body h3 { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.step-body p { font-size: 0.95rem; color: var(--grey); line-height: 1.7; max-width: 560px; }
+
+/* WHAT AMY CAPTURES */
+.captures { background: var(--light); }
+.captures-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 36px; }
+.capture-item { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; align-items: flex-start; gap: 12px; }
+.capture-icon { font-size: 1.3rem; flex-shrink: 0; }
+.capture-item h4 { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.capture-item p { font-size: 0.8rem; color: var(--grey); }
+
+/* FEATURES */
+.features { background: var(--white); }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 36px; }
+.feature-card { background: var(--light); border-radius: var(--radius); padding: 24px; }
+.feature-icon { font-size: 1.6rem; margin-bottom: 12px; }
+.feature-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.feature-card p { font-size: 0.85rem; color: var(--grey); line-height: 1.6; }
+
+/* SETUP */
+.setup { background: var(--light); }
+.setup-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 36px; }
+.setup-step { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; text-align: center; }
+.setup-num { font-family: 'Sora', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--blue); margin-bottom: 8px; }
+.setup-step h3 { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.setup-step p { font-size: 0.8rem; color: var(--grey); }
+
+/* CTA */
+.cta-banner { background: linear-gradient(135deg, var(--navy) 0%, #1a2f52 100%); padding: 72px 24px; text-align: center; }
+.cta-banner-inner { max-width: 680px; margin: 0 auto; }
+.cta-banner h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: var(--white); margin-bottom: 16px; }
+.cta-banner p { color: rgba(255,255,255,0.75); font-size: 1rem; margin-bottom: 32px; }
+.btn { display: inline-block; padding: 14px 28px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; cursor: pointer; border: none; transition: transform 0.15s; }
+.btn:hover { transform: translateY(-2px); }
+.btn-amber { background: var(--amber); color: var(--navy); }
+.btn-amber:hover { background: #e08e00; }
+
+footer { background: var(--navy); color: rgba(255,255,255,0.65); padding: 48px 24px 24px; }
+.footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.footer-logo { font-family: 'Sora', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--white); text-decoration: none; }
+.footer-logo span { color: var(--amber); }
+.footer-desc { font-size: 0.875rem; margin-top: 12px; line-height: 1.6; }
+.footer-col h4 { color: var(--white); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+.footer-col a:hover { color: var(--white); }
+.footer-bottom { max-width: 1100px; margin: 24px auto 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 0.8rem; }
+.footer-bottom a { color: rgba(255,255,255,0.45); text-decoration: none; }
+.whatsapp-float { position: fixed; bottom: 24px; left: 24px; background: #25D366; color: white; padding: 10px 18px; border-radius: 50px; font-size: 0.875rem; font-weight: 600; text-decoration: none; box-shadow: 0 4px 16px rgba(37,211,102,0.4); z-index: 90; display: flex; align-items: center; gap: 8px; transition: transform 0.2s; }
+.whatsapp-float:hover { transform: translateY(-2px); }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--navy); padding: 16px 24px 24px; gap: 4px; }
+  .nav-links.open { display: flex; }
+  .hamburger { display: flex; }
+  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+  .section { padding: 52px 20px; }
+  .step { gap: 16px; }
 }
 </style>
 </head>
@@ -66,9 +121,9 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:40px 24px 24p
     <a href="index.html" class="nav-logo">Trades<span>Flow</span> AI</a>
     <ul class="nav-links" id="navLinks">
       <li><a href="about.html">About Us</a></li>
-      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="how-it-works.html" class="active">How It Works</a></li>
       <li><a href="faq.html">FAQ</a></li>
-      <li><a href="https://calendly.com/ct-paypaluk/30min" class="nav-cta" target="_blank" rel="noopener">Book a Free Call</a></li>
+      <li><a href="https://calendar.app.google/4BGxpbdfNes1v3tQ9" class="nav-cta" target="_blank">Book a Free Call</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -78,99 +133,226 @@ footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:40px 24px 24p
 
 <section class="page-hero">
   <div class="page-hero-inner">
-    <div class="breadcrumb"><a href="index.html">Home</a> / Cookie Policy</div>
-    <h1>🍪 Cookie Policy</h1>
-    <p>Last updated: June 2026</p>
+    <div class="breadcrumb"><a href="index.html">Home</a> / How It Works</div>
+    <h1>⚙️ Simple setup.<br>Instant results.</h1>
+    <p>You stay on the job. Amy handles every enquiry, captures every lead, and makes sure nothing slips through the cracks — day or night. Here's exactly how it works.</p>
   </div>
 </section>
 
-<div class="content">
-
-  <div class="highlight-box">
-    <strong>The short version:</strong> We do not use advertising cookies, tracking cookies, or third-party analytics on this website. The only thing stored in your browser is a small note confirming you dismissed our cookie banner, and a temporary session token that keeps your Amy chat conversation running while you are on this page. Both disappear when you close your browser or clear your data.
+<!-- MAIN FLOW -->
+<section class="section steps">
+  <div class="section-inner">
+    <span class="section-label">The Process</span>
+    <h2 class="section-title">What happens when a customer gets in touch</h2>
+    <div class="steps-list">
+      <div class="step">
+        <div class="step-left">
+          <div class="step-number">1</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <h3>Customer gets in touch via your website</h3>
+          <p>Whether they land on your website at 2pm or 2am — on a Sunday or a bank holiday — Amy is there immediately. No waiting, no voicemail, no missed opportunity.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-number">2</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <h3>Amy holds a natural conversation and collects the details</h3>
+          <p>Amy introduces herself as an AI receptionist and guides the customer through the conversation naturally. She collects everything you need: name, phone number, full address, job description, and urgency — all automatically. She speaks in plain, conversational English — not a rigid script.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-number">3</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <h3>You get notified instantly</h3>
+          <p>The moment the conversation ends, the full lead lands in your Google Sheet and you receive a WhatsApp notification (or email if you prefer) with all the details — even while you're flat out on a job.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-number">4</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <h3>You call back and win the job</h3>
+          <p>You have everything you need before you even pick up the phone. The customer already feels looked after — and you get to call back with the full context of their enquiry, ready to convert.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left">
+          <div class="step-number">5</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <h3>Amy keeps working after the job is done</h3>
+          <p>On Professional and Growth plans, Amy doesn't stop there. She follows up on quotes that go quiet, chases overdue invoices at day 3, 7 and 14, and sends a personalised review request after every completed job — all automatically.</p>
+        </div>
+      </div>
+    </div>
   </div>
+</section>
 
-  <h2>1. What are cookies?</h2>
-  <p>Cookies are small text files that websites store on your device when you visit them. They are used for a variety of purposes — from keeping you logged in, to tracking your behaviour across websites for advertising. This policy explains what we store, why, and for how long.</p>
+<!-- WHAT AMY CAPTURES -->
+<section class="section captures">
+  <div class="section-inner">
+    <span class="section-label">Lead Capture</span>
+    <h2 class="section-title">Everything Amy captures, automatically</h2>
+    <p style="color:var(--grey);font-size:0.95rem">Every field logged to your Google Sheet in real time — no manual entry, no missing details.</p>
+    <div class="captures-grid">
+      <div class="capture-item">
+        <div class="capture-icon">👤</div>
+        <div><h4>Customer Name</h4><p>First name captured naturally in conversation</p></div>
+      </div>
+      <div class="capture-item">
+        <div class="capture-icon">📞</div>
+        <div><h4>Phone Number</h4><p>Mobile or landline, confirmed by the customer</p></div>
+      </div>
+      <div class="capture-item">
+        <div class="capture-icon">📍</div>
+        <div><h4>Full Address</h4><p>Street, town and postcode — ready to navigate to</p></div>
+      </div>
+      <div class="capture-item">
+        <div class="capture-icon">🔧</div>
+        <div><h4>Job Description</h4><p>What needs doing, in the customer's own words</p></div>
+      </div>
+      <div class="capture-item">
+        <div class="capture-icon">⚡</div>
+        <div><h4>Urgency Level</h4><p>How quickly they need the work done</p></div>
+      </div>
+      <div class="capture-item">
+        <div class="capture-icon">🕐</div>
+        <div><h4>Date &amp; Time</h4><p>Exact timestamp of every enquiry logged</p></div>
+      </div>
+      <div class="capture-item">
+        <div class="capture-icon">✉️</div>
+        <div><h4>Email Address</h4><p>Captured where given, for quotes and written follow-up</p></div>
+      </div>
+      <div class="capture-item">
+        <div class="capture-icon">📝</div>
+        <div><h4>Access &amp; Site Notes</h4><p>Difficult access, parking restrictions, or any special equipment the job might need — flagged before you arrive</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <h2>2. What cookies does TradesFlow AI use?</h2>
-  <p>We use the absolute minimum necessary to make this website function. We do not use any advertising cookies, third-party tracking cookies, or analytics platforms such as Google Analytics.</p>
+<!-- FEATURES -->
+<section class="section features">
+  <div class="section-inner">
+    <span class="section-label">All Plans</span>
+    <h2 class="section-title">What's included across the system</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📞</div>
+        <h3>No Missed Leads</h3>
+        <p>Every enquiry answered instantly, even when you're on the tools at 11pm.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <h3>Full Lead Capture</h3>
+        <p>Name, number, address, email, job details and access notes — logged automatically every single time.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>48-Hour Setup</h3>
+        <p>We build and configure everything. You just start getting leads.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>No Long Contracts</h3>
+        <p>Month to month. Cancel any time. One-time setup fee of £497.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧾</div>
+        <h3>Accounting &amp; Invoice Chasing</h3>
+        <p>Snap a photo of any receipt and Amy files it for your accountant. She also chases overdue invoices automatically, so you get paid without the awkward phone call.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Pipeline Report &amp; Reviews</h3>
+        <p>A weekly WhatsApp summary of where your business stands, plus automatic review requests sent at exactly the right moment after a job's done.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <table class="cookie-table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Purpose</th>
-        <th>Duration</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>cookieOk</code></td>
-        <td>localStorage token</td>
-        <td>Remembers that you have dismissed our cookie notice so we don't show it again on repeat visits.</td>
-        <td>Persistent (until you clear browser data)</td>
-      </tr>
-      <tr>
-        <td>Amy chat session</td>
-        <td>In-memory (JavaScript)</td>
-        <td>Holds your current Amy chat conversation in your browser's memory so it continues correctly during your visit. Nothing is written to disk or sent to any third-party service. The conversation is relayed to our Cloudflare Worker to generate Amy's replies and is not stored after the session ends.</td>
-        <td>Session only — deleted when you close the tab</td>
-      </tr>
-    </tbody>
-  </table>
+<!-- SETUP PROCESS -->
+<section class="section setup">
+  <div class="section-inner">
+    <span class="section-label">Getting Started</span>
+    <h2 class="section-title">How we get you set up</h2>
+    <p style="color:var(--grey);font-size:0.95rem;margin-bottom:0">From sign-up to live in 48 hours. You don't touch a single piece of technology.</p>
+    <div class="setup-steps">
+      <div class="setup-step">
+        <div class="setup-num">1</div>
+        <h3>Book a Free Call</h3>
+        <p>20 minutes. We learn about your trade, your customers, and what matters most to you.</p>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">2</div>
+        <h3>We Configure Amy</h3>
+        <p>We set up Amy specifically for your trade, your terminology and your business name.</p>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">3</div>
+        <h3>We Connect Everything</h3>
+        <p>Your Google Sheet, WhatsApp notifications, and any follow-up automations — all configured.</p>
+      </div>
+      <div class="setup-step">
+        <div class="setup-num">4</div>
+        <h3>You Go Live</h3>
+        <p>Amy is embedded on your website, connected to your Google account, and live on WhatsApp — all switched on together. You start receiving leads within hours.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <h2>3. Third-party services</h2>
-  <p>This website loads fonts from Google Fonts (fonts.googleapis.com). Google may set its own cookies or collect minimal technical data (such as your IP address) as part of this request. We have no control over Google's cookie behaviour. You can read Google's privacy policy at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
-  <p>If you book a call via the Calendly link on this site, you will be taken to Calendly's website, which operates under its own cookie and privacy policy. We do not embed Calendly on this page in a way that would cause it to load cookies without your interaction.</p>
-
-  <h2>4. What we do NOT do</h2>
-  <ul>
-    <li>We do not use Google Analytics, Facebook Pixel, or any other third-party analytics or advertising tracking service.</li>
-    <li>We do not sell, share, or trade your browsing data with any third party.</li>
-    <li>We do not use cookies to build a profile of your interests or browsing behaviour.</li>
-    <li>We do not use retargeting cookies.</li>
-  </ul>
-
-  <h2>5. Your rights and how to control cookies</h2>
-  <p>You have the right to control what is stored in your browser at all times. You can clear cookies and localStorage data at any time through your browser settings. Doing so will not affect the functionality of this website — you may simply see the cookie notice again on your next visit.</p>
-  <p>All major browsers allow you to block cookies entirely or on a per-site basis. The links below explain how to manage cookies in common browsers:</p>
-  <ul>
-    <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
-    <li><a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" target="_blank" rel="noopener">Mozilla Firefox</a></li>
-    <li><a href="https://support.apple.com/en-gb/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Apple Safari</a></li>
-    <li><a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener">Microsoft Edge</a></li>
-  </ul>
-
-  <h2>6. Changes to this policy</h2>
-  <p>We may update this Cookie Policy from time to time. Any changes will be posted on this page with an updated date at the top. We recommend checking back periodically if you have concerns about how we use cookies.</p>
-
-  <h2>7. Contact us</h2>
-  <p>If you have any questions about our use of cookies or this policy, please contact us at:</p>
-  <p><strong>TradesFlow AI</strong><br>
-  Email: <a href="mailto:hello@tradesflowai.co.uk">hello@tradesflowai.co.uk</a><br>
-  Website: <a href="https://tradesflowai.co.uk">tradesflowai.co.uk</a></p>
-
-  <p style="margin-top:32px;font-size:0.85rem;color:var(--grey)">See also our full <a href="privacy.html">Privacy Policy</a>.</p>
-
-</div>
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <h2>See it in action — for free</h2>
+    <p>Book a free 20-minute call and we'll walk you through exactly what Amy will look like on your site, with your trade and your branding.</p>
+    <a href="https://calendar.app.google/4BGxpbdfNes1v3tQ9" target="_blank" class="btn btn-amber">Book a Free Consultation</a>
+  </div>
+</section>
 
 <footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="footer-logo">Trades<span>Flow</span> AI</a>
+      <p class="footer-desc">Done-for-you AI systems for UK tradespeople. We set everything up — you just start getting leads.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get Started</h4>
+      <ul>
+        <li><a href="https://calendar.app.google/4BGxpbdfNes1v3tQ9" target="_blank">Book a Free Call</a></li>
+        <li><a href="mailto:Info@TradesFlowAI.co.uk">Info@TradesFlowAI.co.uk</a></li>
+      </ul>
+    </div>
+  </div>
   <div class="footer-bottom">
     <span>© 2026 TradesFlow AI. All rights reserved. United Kingdom.</span>
-    <span style="display:flex;gap:16px;flex-wrap:wrap">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="cookies.html">Cookies</a>
-      <a href="mailto:hello@tradesflowai.co.uk">hello@tradesflowai.co.uk</a>
-    </span>
+    <a href="mailto:Info@TradesFlowAI.co.uk">Info@TradesFlowAI.co.uk</a>
   </div>
 </footer>
 
-<a href="https://wa.me/447700000000" target="_blank" rel="noopener" class="whatsapp-float">💬 WhatsApp Us</a>
+<a href="https://wa.me/447700000000" target="_blank" class="whatsapp-float">💬 WhatsApp Us</a>
 
 <script>
-document.getElementById('hamburger').addEventListener('click', function(){
+document.getElementById('hamburger').addEventListener('click', () => {
   document.getElementById('navLinks').classList.toggle('open');
 });
 </script>
