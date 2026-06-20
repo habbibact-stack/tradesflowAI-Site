@@ -490,6 +490,624 @@ let ended    = false;
 const SESSION_LIMIT = 20;
 let msgCount = 0;
 
+function openChat() {
+  chatWindow.classList.add('open');
+  chatInput.focus();
+  updateWaPosition(true);
+  if (!greeted) { greeted = true; greet(); }
+}
+function closeChat() {
+  chatWindow.classList.remove('open');
+  updateWaPosition(false);
+}
+
+document.getElementById('chatBubble').addEventListener('click', openChat);
+document.getElementById('chatClose').addEventListener('click', closeChat);
+['tryAmyBtn','tryAmyBtn2','tryAmyBtn3'].forEach(function(id){
+  var el = document.getElementById(id);
+  if (el) el.addEventListener('click', openChat);
+});
+
+async function greet() {
+  showTyping();
+  try {
+    const r = await fetch(WORKER_URL, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ messages:[], isGreeting:true })
+    });
+    const d = await r.json();
+    hideTyping();
+    const reply = d.reply || "Hi! I'm Amy 👋 I'm the AI receptionist for TradesFlow AI. What job can I help with today?";
+    addMsg(reply, 'amy');
+    history.push({ role:'assistant', content:reply });
+  } catch {
+    hideTyping();
+    addMsg("Hi! I'm Amy 👋 I'm the AI receptionist for TradesFlow AI. What job can I help with today?", 'amy');
+  }
+}
+
+async function send() {
+  if (ended) return;
+  const text = chatInput.value.trim();
+  if (!text) return;
+
+  msgCount++;
+  if (msgCount > SESSION_LIMIT) {
+    chatInput.disabled = true; chatSend.disabled = true;
+    addMsg("You've reached the end of the demo. See below to find out what happens next!", 'amy');
+    setTimeout(showDemoCTA, 600);
+    ended = true;
+    return;
+  }
+
+  chatInput.value = '';
+  addMsg(text, 'user');
+  history.push({ role:'user', content:text });
+  showTyping();
+
+  try {
+    const r = await fetch(WORKER_URL, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ messages: history })
+    });
+    const d = await r.json();
+    hideTyping();
+    const reply = d.reply || "Sorry, I didn't catch that — could you try again?";
+    addMsg(reply, 'amy');
+    history.push({ role:'assistant', content:reply });
+
+    if (!ended && d.leadComplete) {
+      ended = true;
+      chatInput.disabled = true; chatSend.disabled = true;
+      setTimeout(showDemoCTA, 1400);
+    }
+  } catch {
+    hideTyping();
+    addMsg("Sorry, I'm having trouble connecting right now. Please try again in a moment.", 'amy');
+  }
+}
+
+function showDemoCTA() {
+  // Amy's sign-off line
+  const signOff = document.createElement('div');
+  signOff.className = 'msg msg-amy';
+  signOff.textContent = "That's the demo — you've just experienced exactly what your customers will see. Pretty seamless, right? 👆";
+  chatMessages.appendChild(signOff);
+
+  // Short pause then the CTA card
+  setTimeout(function(){
+    const card = document.createElement('div');
+    card.className = 'demo-cta-card';
+    card.innerHTML =
+      '<p class="dcta-heading">🎬 Want to see the full picture?</p>' +
+      '<p class="dcta-body">Watch our short video to see how Amy captures that lead, fires an instant WhatsApp to your phone, and logs everything to your Google Sheet — automatically, while you are on the tools.</p>' +
+      '<a class="btn-watch" href="https://www.youtube.com/watch?v=YOURVIDEOID" target="_blank" rel="noopener">▶ Watch How the Full System Works</a>' +
+      '<p class="dcta-body" style="margin-top:4px">📅 <strong>Ready to put Amy on your own business?</strong> Book a free 20-minute call — no tech knowledge needed, zero obligation.</p>' +
+      '<button class="btn-book" onclick="window.open(\'https://calendar.app.google/4BGxpbdfNes1v3tQ9\',\'_blank\')">Book My Free Call →</button>' +
+      '<p class="dcta-note">Your demo conversation is not stored. <a href="privacy.html">Privacy Policy</a></p>';
+    chatMessages.appendChild(card);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }, 900);
+
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function addMsg(text, who) {
+  const d = document.createElement('div');
+  d.className = 'msg msg-' + who;
+  d.textContent = text;
+  chatMessages.appendChild(d);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+let typingEl = null;
+function showTyping() {
+  typingEl = document.createElement('div');
+  typingEl.className = 'chat-typing';
+  typingEl.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+  chatMessages.appendChild(typingEl);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+function hideTyping() { if (typingEl) { typingEl.remove(); typingEl = null; } }
+
+chatSend.addEventListener('click', send);
+chatInput.addEventListener('keydown', function(e){
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+});
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Receptionist for Tradesmen UK | Never Miss a Job Again — TradesFlow AI</title>
+<meta name="description" content="Stop losing jobs to missed calls. TradesFlow AI gives UK plumbers, electricians and builders a 24/7 AI assistant that captures leads, chases quotes and invoices, and organises receipts for tax time. Live in 48 hours.">
+<meta name="keywords" content="AI receptionist for tradesmen, missed call answering service UK, AI for plumbers, AI for electricians, lead capture for tradespeople, automated invoice chasing UK">
+<link rel="canonical" href="https://tradesflowai.co.uk/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0f1b2d;--blue:#1a73e8;--blue2:#1558b0;--amber:#f59e0b;--light:#f0f4ff;--white:#ffffff;--grey:#6b7280;--border:#e2e8f0;--text:#1e293b;--radius:12px;--shadow:0 4px 24px rgba(15,27,45,0.10)}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--text);background:#f8fafc;line-height:1.6}
+nav{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.18)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-family:'Sora',sans-serif;font-size:1.25rem;font-weight:800;color:var(--white);text-decoration:none;letter-spacing:-0.5px}
+.nav-logo span{color:var(--amber)}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.82);text-decoration:none;font-size:0.9rem;font-weight:500;padding:8px 14px;border-radius:8px;transition:background 0.2s,color 0.2s}
+.nav-links a:hover{background:rgba(255,255,255,0.1);color:var(--white)}
+.nav-cta{background:var(--amber)!important;color:var(--navy)!important;font-weight:700!important}
+.nav-cta:hover{background:#e08e00!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px;transition:0.3s}
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#1a2f52 100%);color:var(--white);padding:88px 24px 80px;text-align:center}
+.hero-inner{max-width:780px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.3);color:var(--amber);font-size:0.8rem;font-weight:600;padding:6px 14px;border-radius:20px;margin-bottom:28px;letter-spacing:0.04em}
+.hero h1{font-family:'Sora',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;margin-bottom:20px}
+.hero h1 em{color:var(--amber);font-style:normal}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,0.78);max-width:580px;margin:0 auto 36px;line-height:1.7}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 28px;border-radius:8px;font-weight:700;font-size:0.95rem;text-decoration:none;cursor:pointer;border:none;transition:transform 0.15s,box-shadow 0.15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+.btn-amber{background:var(--amber);color:var(--navy)}
+.btn-amber:hover{background:#e08e00}
+.btn-ghost{background:rgba(255,255,255,0.1);color:var(--white);border:1px solid rgba(255,255,255,0.25)}
+.btn-ghost:hover{background:rgba(255,255,255,0.18)}
+.btn-primary{background:var(--blue);color:var(--white)}
+.btn-primary:hover{background:var(--blue2)}
+.btn-outline-navy{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+.stat-strip{background:#142640;padding:28px 24px}
+.stat-strip-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
+.stat-block{text-align:center}
+.stat-num{font-family:'Sora',sans-serif;font-size:2rem;font-weight:800;color:var(--amber);line-height:1}
+.stat-label{font-size:0.8rem;color:rgba(255,255,255,0.7);margin-top:6px;max-width:180px}
+.stat-divider{width:1px;height:44px;background:rgba(255,255,255,0.15)}
+@media(max-width:768px){.stat-strip-inner{gap:24px}.stat-divider{display:none}.stat-num{font-size:1.6rem}}
+.pain{background:var(--white);padding:72px 24px}
+.pain-inner{max-width:1100px;margin:0 auto}
+.section-label{display:inline-block;background:var(--light);color:var(--blue);font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:16px}
+.section-title{font-family:'Sora',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:var(--navy);line-height:1.2;margin-bottom:16px}
+.section-sub{font-size:1rem;color:var(--grey);max-width:560px;line-height:1.7;margin-bottom:40px}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pain-card{background:#fef9f0;border:1px solid #fde68a;border-radius:var(--radius);padding:24px;display:flex;gap:16px;align-items:flex-start}
+.pain-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px}
+.pain-card h3{font-size:0.95rem;font-weight:700;color:var(--navy);margin-bottom:4px}
+.pain-card p{font-size:0.875rem;color:var(--grey);line-height:1.5}
+.try-amy{background:var(--light);padding:72px 24px;text-align:center}
+.try-amy-inner{max-width:680px;margin:0 auto}
+.try-amy h2{font-family:'Sora',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--navy);margin-bottom:12px}
+.try-amy p{color:var(--grey);margin-bottom:28px;font-size:0.95rem}
+.features{background:var(--white);padding:72px 24px}
+.features-inner{max-width:1100px;margin:0 auto}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:48px}
+.feature-card{background:#f8fafc;border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:box-shadow 0.2s}
+.feature-card:hover{box-shadow:var(--shadow)}
+.feature-icon{font-size:1.8rem;margin-bottom:14px}
+.feature-card h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:8px}
+.feature-card p{font-size:0.875rem;color:var(--grey);line-height:1.6}
+.pricing{background:var(--light);padding:72px 24px}
+.pricing-inner{max-width:1100px;margin:0 auto}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:48px}
+.price-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:32px;position:relative;box-shadow:var(--shadow)}
+.price-card.popular{border:2px solid var(--blue)}
+.popular-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--blue);color:var(--white);font-size:0.75rem;font-weight:700;padding:4px 14px;border-radius:20px;white-space:nowrap}
+.price-plan{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);margin-bottom:8px}
+.price-amount{font-family:'Sora',sans-serif;font-size:2.4rem;font-weight:800;color:var(--navy);margin-bottom:4px}
+.price-amount span{font-size:1rem;font-weight:500;color:var(--grey)}
+.price-target{font-size:0.85rem;color:var(--grey);margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.price-features li{font-size:0.875rem;color:var(--text);display:flex;align-items:flex-start;gap:10px}
+.price-features li::before{content:'✓';color:#16a34a;font-weight:700;flex-shrink:0;margin-top:1px}
+.price-note{font-size:0.78rem;color:var(--grey);text-align:center;margin-top:32px;line-height:1.5}
+.testimonials{background:var(--white);padding:72px 24px}
+.testimonials-inner{max-width:1100px;margin:0 auto}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:48px}
+.testi-card{background:var(--light);border-radius:var(--radius);padding:28px}
+.testi-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.testi-avatar{width:44px;height:44px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.testi-who h4{font-size:0.9rem;font-weight:700;color:var(--navy)}
+.testi-who p{font-size:0.8rem;color:var(--grey)}
+.testi-stars{color:var(--amber);font-size:0.9rem;margin-bottom:10px}
+.testi-card blockquote{font-size:0.9rem;color:var(--text);line-height:1.6;font-style:italic}
+.testi-stats{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap}
+.testi-stat{text-align:center}
+.testi-stat strong{display:block;font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:800;color:var(--navy)}
+.testi-stat span{font-size:0.75rem;color:var(--grey)}
+.cta-banner{background:linear-gradient(135deg,var(--navy) 0%,#1a2f52 100%);padding:72px 24px;text-align:center}
+.cta-banner-inner{max-width:680px;margin:0 auto}
+.cta-banner h2{font-family:'Sora',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--white);margin-bottom:16px}
+.cta-banner p{color:rgba(255,255,255,0.75);font-size:1rem;margin-bottom:32px;line-height:1.7}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+footer{background:var(--navy);color:rgba(255,255,255,0.65);padding:48px 24px 24px}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.footer-logo{font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:800;color:var(--white);text-decoration:none}
+.footer-logo span{color:var(--amber)}
+.footer-desc{font-size:0.875rem;margin-top:12px;line-height:1.6}
+.footer-col h4{color:var(--white);font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.875rem;transition:color 0.2s}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{max-width:1100px;margin:24px auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-size:0.8rem}
+.footer-bottom a{color:rgba(255,255,255,0.45);text-decoration:none}
+.footer-bottom a:hover{color:var(--white)}
+.whatsapp-float{position:fixed;bottom:96px;right:24px;background:#25D366;color:white;padding:10px 18px;border-radius:50px;font-size:0.875rem;font-weight:600;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,0.4);z-index:199;display:flex;align-items:center;gap:8px;transition:transform 0.2s,bottom 0.35s cubic-bezier(0.4,0,0.2,1)}
+.whatsapp-float:hover{transform:translateY(-2px)}
+.chat-launcher{position:fixed;bottom:24px;right:24px;z-index:200}
+/* Trust badges */
+.trust-bar{background:var(--navy);border-top:1px solid rgba(255,255,255,0.08);padding:28px 24px}
+.trust-bar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.85);font-size:0.82rem;font-weight:600}
+.trust-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;background:rgba(255,255,255,0.08)}
+.trust-divider{width:1px;height:32px;background:rgba(255,255,255,0.15);flex-shrink:0}
+@media(max-width:768px){.trust-divider{display:none}.trust-bar-inner{gap:20px}.trust-item{font-size:0.78rem}}
+.chat-bubble-btn{width:60px;height:60px;background:var(--navy);border-radius:50%;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:center;font-size:1.5rem;transition:transform 0.2s}
+.chat-bubble-btn:hover{transform:scale(1.08)}
+.chat-window{position:fixed;bottom:96px;right:24px;width:360px;height:540px;background:var(--white);border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,0.2);display:none;flex-direction:column;overflow:hidden;z-index:200}
+.chat-window.open{display:flex}
+.chat-header{background:var(--navy);color:var(--white);padding:16px 20px;display:flex;align-items:center;gap:12px}
+.chat-avatar{width:36px;height:36px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.chat-header-info h4{font-size:0.9rem;font-weight:700}
+.chat-header-info p{font-size:0.75rem;color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:6px}
+.online-dot{width:7px;height:7px;background:#4ade80;border-radius:50%;display:inline-block}
+.chat-close{margin-left:auto;background:none;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:1.3rem;line-height:1;padding:4px}
+.chat-close:hover{color:var(--white)}
+.chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;background:#f8fafc}
+.msg{max-width:82%;padding:10px 14px;border-radius:12px;font-size:0.875rem;line-height:1.5}
+.msg-amy{background:var(--white);border:1px solid var(--border);color:var(--text);align-self:flex-start;border-bottom-left-radius:4px}
+.msg-user{background:var(--blue);color:var(--white);align-self:flex-end;border-bottom-right-radius:4px}
+.chat-typing{align-self:flex-start;background:var(--white);border:1px solid var(--border);padding:10px 14px;border-radius:12px;border-bottom-left-radius:4px;display:flex;gap:4px;align-items:center}
+.dot{width:7px;height:7px;background:var(--grey);border-radius:50%;animation:bounce 1.2s infinite}
+.dot:nth-child(2){animation-delay:0.2s}
+.dot:nth-child(3){animation-delay:0.4s}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+.chat-input-row{padding:12px 16px;background:var(--white);border-top:1px solid var(--border);display:flex;gap:10px}
+.chat-input{flex:1;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:0.875rem;font-family:'Inter',sans-serif;outline:none;resize:none}
+.chat-input:focus{border-color:var(--blue)}
+.chat-input:disabled{background:#f3f4f6;cursor:not-allowed}
+.chat-send{background:var(--blue);color:var(--white);border:none;border-radius:8px;padding:0 16px;cursor:pointer;font-size:1rem;transition:background 0.2s}
+.chat-send:hover{background:var(--blue2)}
+.chat-send:disabled{background:var(--grey);cursor:not-allowed}
+/* Demo CTA card shown after Amy wraps up */
+.demo-cta-card{background:linear-gradient(135deg,#0f1b2d,#1a2f52);border-radius:12px;padding:16px 18px;align-self:flex-start;max-width:90%;margin-top:4px}
+.demo-cta-card .dcta-heading{color:var(--amber);font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px}
+.demo-cta-card .dcta-body{color:rgba(255,255,255,0.82);font-size:0.82rem;line-height:1.55;margin-bottom:10px}
+.demo-cta-card a,.demo-cta-card button{display:block;width:100%;text-align:center;padding:9px 14px;border-radius:7px;font-size:0.82rem;font-weight:700;text-decoration:none;cursor:pointer;border:none;margin-bottom:8px;transition:opacity 0.15s}
+.demo-cta-card a:hover,.demo-cta-card button:hover{opacity:0.88}
+.demo-cta-card .btn-watch{background:var(--amber);color:var(--navy)}
+.demo-cta-card .btn-book{background:var(--blue);color:white}
+.demo-cta-card .dcta-note{font-size:0.71rem;color:rgba(255,255,255,0.35);text-align:center;margin-bottom:0}
+.demo-cta-card .dcta-note a{color:rgba(255,255,255,0.35);text-decoration:underline}
+/* Cookie banner */
+#cookieBanner{display:none;position:fixed;bottom:0;left:0;right:0;background:#1a2f52;color:rgba(255,255,255,0.85);padding:14px 24px;z-index:300;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:0.83rem;border-top:1px solid rgba(255,255,255,0.1)}
+#cookieBanner a{color:var(--amber);text-decoration:underline}
+#cookieOkBtn{background:var(--amber);color:var(--navy);border:none;padding:8px 20px;border-radius:6px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0}
+@media(max-width:768px){
+  .nav-links{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--navy);padding:16px 24px 24px;gap:4px}
+  .nav-links.open{display:flex}
+  .hamburger{display:flex}
+  .footer-inner{grid-template-columns:1fr;gap:28px}
+  .chat-window{width:calc(100vw - 32px);right:16px;bottom:88px}
+  .hero,.pain,.features,.pricing,.testimonials,.try-amy,.cta-banner{padding-left:20px;padding-right:20px}
+  .pain-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .pain-card{padding:14px 10px;flex-direction:column;text-align:center;gap:8px}
+  .pain-card h3{font-size:0.72rem;margin-bottom:3px;line-height:1.25}
+  .pain-card p{display:none}
+  .pain-icon{font-size:1.3rem;margin-top:0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Trades<span>Flow</span> AI</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="how-it-works.html">How It Works</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="https://calendar.app.google/4BGxpbdfNes1v3tQ9" class="nav-cta" target="_blank" rel="noopener">Book a Free Call</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🤖 AI-powered · UK Tradespeople · 24/7</div>
+    <h1>Still missing calls<br>while you're <em>on the job?</em></h1>
+    <p>TradesFlow AI installs Amy — your 24/7 operations team in one system. She answers enquiries day and night, follows up on quotes, chases invoices, organises your receipts for tax time, and gets you more 5-star reviews. All without you lifting a finger.</p>
+    <div class="hero-btns">
+      <a href="https://calendar.app.google/4BGxpbdfNes1v3tQ9" target="_blank" rel="noopener" class="btn btn-amber">Book a Free 20-Min Call</a>
+      <button class="btn btn-ghost" id="tryAmyBtn">💬 Try Amy Now</button>
+    </div>
+  </div>
+</section>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-strip-inner">
+    <div class="stat-block">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Jobs lost a week on average to missed calls</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-block">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Amy never sleeps, never takes a day off</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-block">
+      <div class="stat-num">48hrs</div>
+      <div class="stat-label">From sign-up to fully live on your site</div>
+    </div>
+  </div>
+</div>
+
+<section class="pain">
+  <div class="pain-inner">
+    <span class="section-label">Sound Familiar?</span>
+    <h2 class="section-title">The problems every tradesperson knows</h2>
+    <p class="section-sub">You're brilliant at the work. It's the business side that keeps slipping through the cracks.</p>
+    <div class="pain-grid">
+      <div class="pain-card"><div class="pain-icon">📵</div><div><h3>Missed calls cost you jobs</h3><p>You're on a job, your phone rings, you can't answer — and that customer moves on to the next number on Google.</p></div></div>
+      <div class="pain-card"><div class="pain-icon">📋</div><div><h3>Quotes disappear into silence</h3><p>You send quotes and never hear back. You mean to follow up but never get around to it.</p></div></div>
+      <div class="pain-card"><div class="pain-icon">⭐</div><div><h3>Happy customers don't leave reviews</h3><p>They mean to — but nobody asks them at the right moment, so it never happens.</p></div></div>
+      <div class="pain-card"><div class="pain-icon">💸</div><div><h3>Invoices go unpaid for weeks</h3><p>Chasing payment feels awkward, so you put it off and your cash flow suffers.</p></div></div>
+      <div class="pain-card"><div class="pain-icon">🗂️</div><div><h3>Tax time is a complete nightmare</h3><p>Receipts stuffed in your van, on your phone, or lost altogether — and you end up paying more tax than you should.</p></div></div>
+      <div class="pain-card"><div class="pain-icon">😤</div><div><h3>No idea where your business stands</h3><p>You don't know how many jobs are waiting, how many quotes you've sent, or who still owes you money — until it's too late.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="try-amy">
+  <div class="try-amy-inner">
+    <h2>Meet Amy — your 24/7 operations team</h2>
+    <p>Amy answers every enquiry instantly, captures the details, and gets them straight to you. Try her now and see exactly what your customers experience.</p>
+    <button class="btn btn-primary" id="tryAmyBtn2">💬 Try Amy Now</button>
+  </div>
+</section>
+
+<section class="features">
+  <div class="features-inner">
+    <span class="section-label">What's Included</span>
+    <h2 class="section-title">Your complete AI ops system</h2>
+    <p class="section-sub" style="margin-bottom:0">Everything is set up for you. You don't touch a single piece of technology.</p>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon">🤖</div><h3>24/7 AI Receptionist</h3><p>Amy answers every website enquiry instantly — even on bank holidays and Christmas Day — and gets the details straight to your phone.</p></div>
+      <div class="feature-card"><div class="feature-icon">📲</div><h3>Instant Lead Notifications</h3><p>The moment a customer gets in touch, you get a WhatsApp with their name, number, address and exactly what they need — before your competitor even knows they called.</p></div>
+      <div class="feature-card"><div class="feature-icon">📩</div><h3>Quote &amp; Invoice Chaser</h3><p>Amy follows up on quotes that go quiet and chases overdue invoices at day 3, 7 and 14 — automatically, so you get paid without the awkward conversation.</p></div>
+      <div class="feature-card"><div class="feature-icon">⭐</div><h3>Review Request Agent</h3><p>Sends a personalised thank-you and Google review link after every completed job — at exactly the right moment, while the customer is still happy.</p></div>
+      <div class="feature-card"><div class="feature-icon">🧾</div><h3>Your Personal Accountant</h3><p>Snap a photo of any receipt and send it to Amy. She reads it, logs the amount and supplier to a spreadsheet, and files the image in a tidy folder — so your accountant has everything they need at tax time and you claim back every penny you're owed.</p></div>
+      <div class="feature-card"><div class="feature-icon">📊</div><h3>Weekly Pipeline Report</h3><p>Every Monday morning Amy sends you a WhatsApp summary of your week — new enquiries, quotes still waiting for an answer, unpaid invoices, and reviews earned. Think of it as a quick snapshot of exactly where your business stands, so nothing slips through the cracks.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing">
+  <div class="pricing-inner">
+    <span class="section-label">Pricing</span>
+    <h2 class="section-title">Simple, honest pricing</h2>
+    <p class="section-sub" style="margin-bottom:0">No hidden fees. No long contracts. Cancel any time with 30 days notice.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-plan">Starter</div>
+        <div class="price-amount">£197<span>/mo</span></div>
+        <div class="price-target">For solo traders just getting started</div>
+        <ul class="price-features">
+          <li>24/7 AI receptionist (Amy)</li>
+          <li>Lead capture to Google Sheet</li>
+          <li>WhatsApp/email notifications</li>
+          <li>Full setup included</li>
+          <li>Live within 48 hours</li>
+        </ul>
+        <a href="https://calendar.app.google/4BGxpbdfNes1v3tQ9" target="_blank" rel="noopener" class="btn btn-outline-navy" style="width:100%;text-align:center">Get Started</a>
+      </div>
+      <div class="price-card popular">
+        <div class="popular-badge">⭐ Most Popular</div>
+        <div class="price-plan">Professional</div>
+        <div class="price-amount">£297<span>/mo</span></div>
+        <div class="price-target">For established tradespeople ready to scale</div>
+        <ul class="price-features">
+          <li>Everything in Starter</li>
+          <li>Automated quote follow-up</li>
+          <li>Invoice chaser (day 3, 7, 14)</li>
+          <li>Review request agent</li>
+          <li>Weekly WhatsApp pipeline report</li>
+          <li>Receipt organiser for tax returns</li>
+        </ul>
+        <a href="https://calendar.app.google/4BGxpbdfNes1v3tQ9" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;text-align:center">Get Started</a>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">Growth</div>
+        <div class="price-amount">£497<span>/mo</span></div>
+        <div class="price-target">For fast-growing firms and multi-trader teams</div>
+        <ul class="price-features">
+          <li>Everything in Professional</li>
+          <li>Custom AI name &amp; branding</li>
+          <li>Multi-user team access</li>
+          <li>Priority support</li>
+          <li>Monthly strategy call</li>
+        </ul>
+        <a href="https://calendar.app.google/4BGxpbdfNes1v3tQ9" target="_blank" rel="noopener" class="btn btn-outline-navy" style="width:100%;text-align:center">Get Started</a>
+      </div>
+    </div>
+    <p class="price-note">All plans include a one-time setup fee of £497. No long-term contracts. Cancel anytime with 30 days notice.</p>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <span class="section-label">Real Results</span>
+    <h2 class="section-title">What happens when you stop missing leads</h2>
+    <p class="section-sub" style="margin-bottom:0">Real businesses. Real numbers. No fluff.</p>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-header"><div class="testi-avatar">🔧</div><div class="testi-who"><h4>Plumber — Manchester</h4><p>Starter Plan</p></div></div>
+        <div class="testi-stars">★★★★★</div>
+        <blockquote>"I was sceptical but in the first week Amy captured three leads I would have missed while I was on jobs. Two of them converted. That's paid for six months of the service."</blockquote>
+        <div class="testi-stats">
+          <div class="testi-stat"><strong>3</strong><span>Leads captured week one</span></div>
+          <div class="testi-stat"><strong>2</strong><span>Converted to paid jobs</span></div>
+          <div class="testi-stat"><strong>£0</strong><span>Lost to competitors</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-header"><div class="testi-avatar">⚡</div><div class="testi-who"><h4>Electrician — Birmingham</h4><p>Professional Plan</p></div></div>
+        <div class="testi-stars">★★★★★</div>
+        <blockquote>"The invoice chaser alone is worth it. I used to feel awkward following up on unpaid invoices. Now Amy does it at day 3, 7 and 14 and I don't have to say a word."</blockquote>
+        <div class="testi-stats">
+          <div class="testi-stat"><strong>4</strong><span>Overdue invoices recovered</span></div>
+          <div class="testi-stat"><strong>£2,400</strong><span>Cash recovered month one</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-header"><div class="testi-avatar">🏗️</div><div class="testi-who"><h4>Builder — Leeds</h4><p>Growth Plan</p></div></div>
+        <div class="testi-stars">★★★★★</div>
+        <blockquote>"We were losing at least two or three enquiries a week just from not answering fast enough. Since Amy went live we haven't missed a single one."</blockquote>
+        <div class="testi-stats">
+          <div class="testi-stat"><strong>11</strong><span>New leads month one</span></div>
+          <div class="testi-stat"><strong>7</strong><span>Converted to paid jobs</span></div>
+          <div class="testi-stat"><strong>14</strong><span>New 5★ reviews</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <h2>Ready to stop losing leads?</h2>
+    <p>Book a free 20-minute call. We'll show you exactly what your AI system will look like — no tech knowledge needed, no obligation.</p>
+    <div class="cta-btns">
+      <a href="https://calendar.app.google/4BGxpbdfNes1v3tQ9" target="_blank" rel="noopener" class="btn btn-amber">Book a Free Consultation</a>
+      <button class="btn btn-ghost" id="tryAmyBtn3">💬 Try Amy First</button>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><div class="trust-icon">🔒</div><span>GDPR Compliant</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon">🇬🇧</div><span>UK Based Business</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon">🛡️</div><span>SSL Encrypted</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon">💳</div><span>Secure Payments via Stripe</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon">📋</div><span>No Long-Term Contracts</span></div>
+    <div class="trust-divider"></div>
+    <div class="trust-item"><div class="trust-icon">✅</div><span>Cancel Any Time</span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="footer-logo">Trades<span>Flow</span> AI</a>
+      <p class="footer-desc">Done-for-you AI systems for UK tradespeople. We set everything up — you just start getting leads.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="cookies.html">Cookie Policy</a></li>
+        <li><a href="https://calendar.app.google/4BGxpbdfNes1v3tQ9" target="_blank" rel="noopener">Book a Free Call</a></li>
+        <li><a href="mailto:Info@TradesFlowAI.co.uk">Info@TradesFlowAI.co.uk</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 TradesFlow AI. All rights reserved. United Kingdom.</span>
+    <span style="display:flex;gap:16px;flex-wrap:wrap">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="cookies.html">Cookies</a>
+      <a href="mailto:Info@TradesFlowAI.co.uk">Info@TradesFlowAI.co.uk</a>
+    </span>
+  </div>
+</footer>
+
+<a href="https://wa.me/447700000000" target="_blank" rel="noopener" class="whatsapp-float">💬 WhatsApp Us</a>
+
+<!-- COOKIE BANNER -->
+<div id="cookieBanner">
+  <span>We don't use tracking or advertising cookies. This site uses only a session token to keep your Amy chat running while you're here — it disappears when you close the tab. <a href="cookies.html">Cookie Policy</a></span>
+  <button id="cookieOkBtn">Got it</button>
+</div>
+
+<!-- CHAT WIDGET -->
+<div class="chat-launcher">
+  <button class="chat-bubble-btn" id="chatBubble" aria-label="Chat with Amy">🤖</button>
+</div>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-avatar">🤖</div>
+    <div class="chat-header-info">
+      <h4>Amy – TradesFlow AI</h4>
+      <p><span class="online-dot"></span> Online · Demo Mode</p>
+    </div>
+    <button class="chat-close" id="chatClose">×</button>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-input-row">
+    <textarea class="chat-input" id="chatInput" rows="1" placeholder="Type your message…"></textarea>
+    <button class="chat-send" id="chatSend">➤</button>
+  </div>
+</div>
+
+<script>
+// ── Cookie banner ──
+(function(){
+  try { if (!localStorage.getItem('cookieOk')) document.getElementById('cookieBanner').style.display = 'flex'; } catch(e){}
+  document.getElementById('cookieOkBtn').addEventListener('click', function(){
+    document.getElementById('cookieBanner').style.display = 'none';
+    try { localStorage.setItem('cookieOk','1'); } catch(e){}
+  });
+})();
+
+// ── Hamburger ──
+document.getElementById('hamburger').addEventListener('click', function(){
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// ── WhatsApp float sits above Amy button, rises when chat opens ──
+const waBtn = document.querySelector('.whatsapp-float');
+function updateWaPosition(chatOpen) {
+  if (chatOpen) {
+    waBtn.style.bottom = '660px';
+  } else {
+    waBtn.style.bottom = '96px';
+  }
+}
+
+// ── Chat Widget ──
+const WORKER_URL = 'https://amy-chat-api.ct-paypaluk.workers.dev';
+const chatWindow  = document.getElementById('chatWindow');
+const chatMessages = document.getElementById('chatMessages');
+const chatInput   = document.getElementById('chatInput');
+const chatSend    = document.getElementById('chatSend');
+
+let history = [];
+let greeted  = false;
+let ended    = false;
+// Client-side session limit — real protection is in the Worker
+const SESSION_LIMIT = 20;
+let msgCount = 0;
+
 // Phrases Amy uses when she has finished capturing the lead
 const WRAP_PHRASES = [
   "thank you", "thanks for", "we'll be in touch", "we will be in touch",
